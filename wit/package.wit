@@ -1,0 +1,303 @@
+// package jcbhmr:expr-wasm@1.17.6-rc1;
+// package jcbhmr:go-wasm-std@1.25.0 {
+//     interface x {
+//         resource any {}
+//         resource error {
+//             error2: func() -> string;
+//             from-any: func(v: any) -> option<error>;
+//             as-any: func() -> any;
+//         }
+//     }
+//     interface io {
+//         use x.{any, error};
+//         use io-host.{host-reader, host-writer};
+//         resource reader {
+//             from-host: static func(host: host-reader) -> reader;
+//             read: func(p: list<u8>) -> result<s32, error>;
+//             as-any: func() -> any;
+//             from-any: func(v: any) -> option<reader>;
+//         }
+//         resource writer {
+//             from-host: static func(host: host-writer) -> writer;
+//             write: func(p: list<u8>) -> result<s32, error>;
+//             as-any: func() -> any;
+//             from-any: func(v: any) -> option<writer>;
+//         }
+//     }
+//     interface io-host {
+//         use x.{any, error};
+//         resource host-reader {
+//             read: func(p: list<u8>) -> result<s32, error>;
+//             as-any: func() -> any;
+//             from-any: func(v: any) -> option<host-reader>;
+//         }
+//         resource host-writer {
+//             write: func(p: list<u8>) -> result<s32, error>;
+//             as-any: func() -> any;
+//             from-any: func(v: any) -> option<host-writer>;
+//         }
+//     }
+//     interface reflect {
+//         use x.{any, error};
+//         resource value {
+//             as-any: func() -> any;
+//             from-any: func(v: any) -> option<value>;
+//         }
+//     }
+// }
+// package jcbhmr:expr-wasm-expr@1.17.6-rc1 {
+//     interface callbacks-host {
+//         use jcbhmr:go-wasm-std/x@1.25.0.{any, error};
+//         resource func-list-any-result-any-error {
+//             call: func(params: list<any>) -> result<any, error>;
+//         }
+//         resource func-list-any-result-tuple-any-u32-error {
+//             call: func(params: list<any>) -> result<tuple<any, u32>, error>;
+//         }
+//     }
+//     interface callbacks {
+//         use jcbhmr:go-wasm-std/x@1.25.0.{any, error};
+//         use callbacks-host.{func-list-any-result-any-error as host-func-list-any-result-any-error, func-list-any-result-tuple-any-u32-error as host-func-list-any-result-tuple-any-u32-error};
+//         resource func-list-any-result-any-error {
+//             from-host: static func(host: host-func-list-any-result-any-error) -> func-list-any-result-any-error;
+//             call: func(params: list<any>) -> result<any, error>;
+//             from-any: func(v: any) -> option<func-list-any-result-any-error>;
+//             as-any: func() -> any;
+//             clone: func() -> func-list-any-result-any-error;
+//         }
+//         resource func-list-any-result-tuple-any-u32-error {
+//             from-host: static func(host: host-func-list-any-result-tuple-any-u32-error) -> func-list-any-result-tuple-any-u32-error;
+//             call: func(params: list<any>) -> result<tuple<any, u32>, error>;
+//             from-any: func(v: any) -> option<func-list-any-result-tuple-any-u32-error>;
+//             as-any: func() -> any;
+//             clone: func() -> func-list-any-result-tuple-any-u32-error;
+//         }
+//     }
+//     interface maps {
+//         use jcbhmr:go-wasm-std/x@1.25.0.{any, error};
+//         resource map-string-string {
+//             from-all: static func(v: list<tuple<string, string>>) -> map-string-string;
+//             constructor();
+//             all: func() -> list<tuple<string, string>>;
+//             keys: func() -> list<string>;
+//             values: func() -> list<string>;
+//             get: func(k: string) -> option<string>;
+//             set: func(k: string, v: string);
+//             as-any: func() -> any;
+//             from-any: func(v: any) -> option<map-string-string>;
+//         }
+//     }
+//     interface x {
+//         use jcbhmr:go-wasm-std/x@1.25.0.{any, error};
+//         use vm.{program};
+//         compile: func(input: string, ops: list<%option>) -> result<program, error>;
+//         eval: func(input: string, env: any);
+//         run: func(program: program, env: any);
+//         resource %option {}
+//     }
+//     interface file {
+//         resource source {}
+//         resource location {}
+//     }
+//     interface ast {
+//         resource node {}
+//     }
+//     interface vm {
+//         use jcbhmr:go-wasm-std/x@1.25.0.{any, error};
+//         use callbacks.{func-list-any-result-any-error};
+//         use maps.{map-string-string};
+//         use jcbhmr:go-wasm-std/io@1.25.0.{reader, writer};
+//         use file.{source, location};
+//         use ast.{node};
+//         use jcbhmr:go-wasm-std/reflect@1.25.0.{value};
+//         get-func-types: func() -> list<any>;
+//         run: func(program: program, env: any) -> result<any, error>;
+//         enum opcode {
+//             invalid,
+//             push,
+//             int,
+//             pop,
+//             store,
+//             load-var,
+//             load-const,
+//             load-field,
+//             load-fast,
+//             load-method,
+//             load-func,
+//             load-env,
+//             fetch,
+//             fetch-field,
+//             method,
+//             true,
+//             false,
+//             nil,
+//             negate,
+//             not,
+//             equal,
+//             equal-int,
+//             equal-string,
+//             jump,
+//             jump-if-true,
+//             jump-if-false,
+//             jump-if-nil,
+//             jump-if-not-nil,
+//             jump-if-end,
+//             jump-backward,
+//             in,
+//             less,
+//             more,
+//             less-or-equal,
+//             more-or-equal,
+//             add,
+//             subtract,
+//             multiply,
+//             divide,
+//             modulo,
+//             exponent,
+//             range,
+//             matches,
+//             matches-const,
+//             contains,
+//             starts-with,
+//             ends-with,
+//             slice,
+//             call,
+//             call0,
+//             call1,
+//             call2,
+//             call3,
+//             call-n,
+//             call-fast,
+//             call-safe,
+//             call-typed,
+//             call-builtin1,
+//             array,
+//             map,
+//             len,
+//             cast,
+//             deref,
+//             increment-index,
+//             decrement-index,
+//             increment-count,
+//             get-index,
+//             get-count,
+//             get-len,
+//             get-acc,
+//             set-acc,
+//             set-index,
+//             pointer,
+//             throw,
+//             create,
+//             group-by,
+//             sort-by,
+//             sort,
+//             profile-start,
+//             profile-end,
+//             begin,
+//             end,
+//         }
+//         opcode-from-any: func(v: any) -> option<opcode>;
+//         opcode-to-any: func(v: opcode) -> any;
+//         resource program {
+//             get-bytecode: func() -> list<opcode>;
+//             set-bytecode: func(v: list<opcode>);
+//             get-arguments: func() -> list<s32>;
+//             set-arguments: func(v: list<s32>);
+//             get-constants: func() -> list<any>;
+//             set-constants: func(v: list<any>);
+//             constructor();
+//             clone: func() -> program;
+//             disassemble: func() -> string;
+//             disassemble-writer: func(w: writer);
+//         }
+//         new-program: func(source: source, node: node, locations: list<location>, variables: s32, constants: list<any>, bytecode: list<opcode>, arguments: list<s32>, functions: list<func-list-any-result-any-error>, debug-info: map-string-string, span: span) -> program;
+//         record scope {
+//             array: value,
+//             index: s32,
+//             len: s32,
+//             count: s32,
+//             acc: any,
+//         }
+//         resource span {
+//             get-name: func() -> string;
+//             set-name: func(v: string);
+//             get-expression: func() -> string;
+//             set-expression: func(v: string);
+//             get-duration: func() -> s64;
+//             set-duration: func(v: s64);
+//             get-children: func() -> list<span>;
+//             constructor();
+//             clone: func() -> span;
+//         }
+//         get-span: func(program: program) -> span;
+//         resource vm {
+//             get-stack: func() -> list<any>;
+//             set-stack: func(v: list<any>);
+//             get-scopes: func() -> list<scope>;
+//             set-scopes: func(v: list<scope>);
+//             get-variables: func() -> list<any>;
+//             set-variables: func(v: list<any>);
+//             get-memory-budget: func() -> u32;
+//             set-memory-budget: func(v: u32);
+//             constructor();
+//             clone: func() -> vm;
+//             position: func() -> stream<s32>;
+//         }
+//         debug: func() -> vm;
+//     }
+//     world expr {
+//         export callbacks;
+//         import callbacks-host;
+//         include wasi:cli/imports@0.2.0;
+//         export jcbhmr:go-wasm-std/x@1.25.0;
+//         export jcbhmr:go-wasm-std/io@1.25.0;
+//         import jcbhmr:go-wasm-std/io-host@1.25.0;
+//         export jcbhmr:go-wasm-std/reflect@1.25.0;
+//         export maps;
+//         export x;
+//         export ast;
+//         export file;
+//         export vm;
+//     }
+// }
+
+package jcbhmr:hello;
+
+interface x {
+    type any = s32;
+}
+
+interface callbacks {
+    use x.{any};
+    use callbacks-host.{P-string as host-P-string, P-string-R-string as host-P-string-R-string, P-any as host-P-any};
+    resource P-string {
+        from-host: static func(f: host-P-string) -> P-string;
+        call: func(a: string);
+    }
+    resource P-string-R-string {
+        from-host: static func(f: host-P-string-R-string) -> P-string-R-string;
+        call: func(a: string) -> string;
+    }
+    resource P-any {
+        from-host: static func(f: host-P-any) -> P-any;
+        call: func(a: any);
+    }
+}
+
+interface callbacks-host {
+    use x.{any};
+    resource P-string {
+        call: func(a: string);
+    }
+    resource P-string-R-string {
+        call: func(a: string) -> string;
+    }
+    resource P-any {
+        call: func(a: any);
+    }
+}
+
+world w {
+    import callbacks-host;
+    export callbacks;
+}

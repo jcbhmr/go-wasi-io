@@ -1,10 +1,12 @@
 package main_test
 
 import (
+	"encoding/json"
 	"fmt"
 	"log"
 	"os"
 	"os/exec"
+	"path/filepath"
 	"strings"
 	"testing"
 )
@@ -26,8 +28,12 @@ func TestInspectWIT(t *testing.T) {
 
 func TestRunJS(t *testing.T) {
 	d := t.TempDir()
-	cmd := exec.Command("jco", "--help", d)
-	t.Logf("Running %q", cmd)
+	err := os.WriteFile(filepath.Join(d, "package.json"), []byte(`{"type":"module","dependencies":{"@bytecodealliance/preview2-shim":"^0.17.2"}}`), 0644)
+	if err != nil {
+		t.Fatal(err)
+	}
+	cmd := exec.Command("npm", "install")
+	cmd.Dir = d
 	output, err := cmd.CombinedOutput()
 	if len(output) > 0 {
 		t.Logf("%s", output)
@@ -36,9 +42,7 @@ func TestRunJS(t *testing.T) {
 		err = fmt.Errorf("failed to run command %q: %w", cmd, err)
 		t.Fatal(err)
 	}
-	cmd = exec.Command("node", "--input-type", "module", "--eval", `
-		console.log(42)
-	`)
+	cmd = exec.Command("jco", "transpile", wasmPath, "--out-dir", d, "--name", "hello-world")
 	t.Logf("Running %q", cmd)
 	output, err = cmd.CombinedOutput()
 	if len(output) > 0 {
@@ -48,8 +52,37 @@ func TestRunJS(t *testing.T) {
 		err = fmt.Errorf("failed to run command %q: %w", cmd, err)
 		t.Fatal(err)
 	}
+	jsPathJSON, err := json.Marshal(filepath.Join(d, "hello-world.js"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	cmd = exec.Command("node", "--eval", `import * as m from `+string(jsPathJSON)+`;
+console.log(m);
+m.greetings.sayHello("Alan Turing");
+m.greetings.sayHi("Ada Lovelace");
+m.greetings.sayHiInFrench("Charles Babbage");
+`)
+	t.Logf("Running %q", cmd)
+	output, err = cmd.CombinedOutput()
+	if len(output) > 0 {
+		t.Logf("%s", output)
+	}
+	if err != nil {
+		err = fmt.Errorf("failed to run command %q: %w", cmd, err)
+		t.Fatal(err)
+	}
+	if !strings.Contains(string(output), "Alan Turing") {
+		t.Errorf("expected to contain %q, got %q", "Alan Turing", string(output))
+	}
+	if !strings.Contains(string(output), "Ada Lovelace") {
+		t.Errorf("expected to contain %q, got %q", "Ada Lovelace", string(output))
+	}
+	if !strings.Contains(string(output), "Charles Babbage") {
+		t.Errorf("expected to contain %q, got %q", "Charles Babbage", string(output))
+	}
 }
 
+// TODO: Move this build process to _scripts/build/main.go?
 func TestMain(m *testing.M) {
 	exe, err := os.Executable()
 	if err != nil {

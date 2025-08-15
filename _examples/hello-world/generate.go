@@ -58,7 +58,7 @@ func main() {
 		if err != nil {
 			return fmt.Errorf("failed to read file %q: %w", path2, err)
 		}
-		code = bytes.ReplaceAll(code, []byte("github.com/jcbhmr/go-wasi-io/v0.2.0-rc1/_examples/hello-world/internal/wasi/io/"), []byte("github.com/jcbhmr/go-wasi-io/v0.2.0-rc1/"))
+		code = bytes.ReplaceAll(code, []byte("github.com/jcbhmr/go-wasi-io/v0.2/_examples/hello-world/internal/wasi/io/"), []byte("github.com/jcbhmr/go-wasi-io/v0.2/"))
 		log.Printf("Writing %q", path2)
 		err = os.WriteFile(path2, code, 0644)
 		if err != nil {

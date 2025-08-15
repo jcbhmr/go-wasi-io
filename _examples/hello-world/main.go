@@ -5,7 +5,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/jcbhmr/go-wasi-io/v0.2.0-rc1/_examples/hello-world/internal/jcbhmr/hello-world/greetings"
+	"github.com/jcbhmr/go-wasi-io/v0.2/_examples/hello-world/internal/jcbhmr/hello-world/greetings"
 )
 
 func init() {

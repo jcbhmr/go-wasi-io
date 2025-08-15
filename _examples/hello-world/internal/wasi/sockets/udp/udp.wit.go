@@ -4,8 +4,8 @@
 package udp
 
 import (
-	"github.com/jcbhmr/go-wasi-io/v0.2.0-rc1/poll"
-	"github.com/jcbhmr/go-wasi-io/v0.2.0-rc1/_examples/hello-world/internal/wasi/sockets/network"
+	"github.com/jcbhmr/go-wasi-io/v0.2/_examples/hello-world/internal/wasi/sockets/network"
+	"github.com/jcbhmr/go-wasi-io/v0.2/poll"
 	"go.bytecodealliance.org/cm"
 )
 

@@ -4,7 +4,7 @@
 package preopens
 
 import (
-	"github.com/jcbhmr/go-wasi-io/v0.2.0-rc1/_examples/hello-world/internal/wasi/filesystem/types"
+	"github.com/jcbhmr/go-wasi-io/v0.2/_examples/hello-world/internal/wasi/filesystem/types"
 	"go.bytecodealliance.org/cm"
 )
 

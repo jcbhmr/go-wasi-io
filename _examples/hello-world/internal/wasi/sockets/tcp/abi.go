@@ -3,9 +3,10 @@
 package tcp
 
 import (
-	"github.com/jcbhmr/go-wasi-io/v0.2.0-rc1/_examples/hello-world/internal/wasi/sockets/network"
-	"go.bytecodealliance.org/cm"
 	"unsafe"
+
+	"github.com/jcbhmr/go-wasi-io/v0.2/_examples/hello-world/internal/wasi/sockets/network"
+	"go.bytecodealliance.org/cm"
 )
 
 // TupleTCPSocketInputStreamOutputStreamShape is used for storage in variant or result types.

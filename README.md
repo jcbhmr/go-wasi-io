@@ -3,7 +3,7 @@
 ## Installation
 
 ```sh
-go get github.com/jcbhmr/go-wasi-io/v0.2.0-rc1
+go get github.com/jcbhmr/go-wasi-io/v0.2
 ```
 
 ## Usage
@@ -17,8 +17,8 @@ Instead of relying on your local copy of generated bindings from wit-bindgen-go 
     │   └── my-app/
     │       └── my-interface/
     │           └── ...
-    └── wasi/ # Dedupe these wasi:io bindings from your project
-        └── io/
+    └── wasi/
+        └── io/ # 👈 Dedupe these wasi:io bindings from your project
             ├── error/
             │   ├── empty.s
             │   ├── error.wasm.go
@@ -32,3 +32,5 @@ Instead of relying on your local copy of generated bindings from wit-bindgen-go 
                 ├── streams.wasm.go
                 └── streams.wit.go
 ```
+
+See [`_examples/hello-world`](https://github.com/jcbhmr/go-wasi-io/tree/main/_examples/hello-world) for an example project that uses this package.

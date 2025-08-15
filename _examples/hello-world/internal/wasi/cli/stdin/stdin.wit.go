@@ -4,7 +4,7 @@
 package stdin
 
 import (
-	"github.com/jcbhmr/go-wasi-io/v0.2.0-rc1/streams"
+	"github.com/jcbhmr/go-wasi-io/v0.2/streams"
 	"go.bytecodealliance.org/cm"
 )
 

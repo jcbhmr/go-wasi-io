@@ -7,6 +7,6 @@ interface greetings {
 }
 
 world hello-world {
-    include wasi:cli/command@0.2.0;
+    include wasi:cli/imports@0.2.0;
     export greetings;
 }

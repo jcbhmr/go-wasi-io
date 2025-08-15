@@ -1,8 +1,9 @@
-module github.com/jcbhmr/expr-wasm
+module github.com/jcbhmr/go-wasi-io/v0.2.0-rc1
 
 go 1.24.5
 
 require (
+	github.com/bytecodealliance/wasmtime-go/v35 v35.0.0 // indirect
 	github.com/coreos/go-semver v0.3.1 // indirect
 	github.com/docker/libtrust v0.0.0-20160708172513-aabc10ec26b7 // indirect
 	github.com/expr-lang/expr v1.17.6 // indirect

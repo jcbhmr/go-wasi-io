@@ -1,0 +1,9 @@
+{
+    "go.buildTags": "tinygo,wasip2",
+    "gopls": {
+        "build.standaloneTags": [
+            "ignore",
+            "generate"
+        ]
+    }
+}

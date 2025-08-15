@@ -1,0 +1,12 @@
+package jcbhmr:hello-world;
+
+interface greetings {
+    say-hello: func(name: string);
+    say-hi: func(name: string);
+    say-hi-in-french: func(name: string);
+}
+
+world hello-world {
+    include wasi:cli/command@0.2.0;
+    export greetings;
+}

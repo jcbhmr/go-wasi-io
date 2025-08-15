@@ -1,0 +1,33 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: Go
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: acifani/setup-tinygo@v2
+    - uses: cargo-bins/cargo-binstall@main
+    - run: cargo binstall -y wasm-tools
+    - run: cargo install --locked wkg
+    - run: npm install --global @bytecodealliance/jco
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      # with:
+      #   go-version: '1.20'
+
+    - name: Build
+      run: go build -v ./...
+
+    - name: Test
+      run: go test -v ./...

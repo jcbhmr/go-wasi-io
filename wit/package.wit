@@ -1,4 +1,4 @@
-package jcbhmr:wasi-io@0.2.0-rc1;
+package jcbhmr:wasi-io@0.2.0;
 
 world wasi-io {
     include wasi:io/imports@0.2.0;

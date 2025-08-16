@@ -7,7 +7,7 @@
 package terminalstderr
 
 import (
-	terminaloutput "github.com/jcbhmr/go-wasi-io/v0.2/_examples/hello-world/internal/wasi/cli/terminal-output"
+	terminaloutput "github.com/jcbhmr/go-wasi-io/v0.2.0/_examples/hello-world/internal/wasi/cli/terminal-output"
 	"go.bytecodealliance.org/cm"
 )
 

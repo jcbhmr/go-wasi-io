@@ -4,10 +4,10 @@
 package tcp
 
 import (
-	monotonicclock "github.com/jcbhmr/go-wasi-io/v0.2/_examples/hello-world/internal/wasi/clocks/monotonic-clock"
-	"github.com/jcbhmr/go-wasi-io/v0.2/_examples/hello-world/internal/wasi/sockets/network"
-	"github.com/jcbhmr/go-wasi-io/v0.2/poll"
-	"github.com/jcbhmr/go-wasi-io/v0.2/streams"
+	monotonicclock "github.com/jcbhmr/go-wasi-io/v0.2.0/_examples/hello-world/internal/wasi/clocks/monotonic-clock"
+	"github.com/jcbhmr/go-wasi-io/v0.2.0/poll"
+	"github.com/jcbhmr/go-wasi-io/v0.2.0/streams"
+	"github.com/jcbhmr/go-wasi-io/v0.2.0/_examples/hello-world/internal/wasi/sockets/network"
 	"go.bytecodealliance.org/cm"
 )
 

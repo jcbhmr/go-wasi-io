@@ -1,4 +1,4 @@
-module github.com/jcbhmr/go-wasi-io/v0.2
+module github.com/jcbhmr/go-wasi-io/v0.2.0
 
 go 1.24.5
 

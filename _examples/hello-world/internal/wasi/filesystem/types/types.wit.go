@@ -4,8 +4,8 @@
 package types
 
 import (
-	wallclock "github.com/jcbhmr/go-wasi-io/v0.2/_examples/hello-world/internal/wasi/clocks/wall-clock"
-	"github.com/jcbhmr/go-wasi-io/v0.2/streams"
+	wallclock "github.com/jcbhmr/go-wasi-io/v0.2.0/_examples/hello-world/internal/wasi/clocks/wall-clock"
+	"github.com/jcbhmr/go-wasi-io/v0.2.0/streams"
 	"go.bytecodealliance.org/cm"
 )
 

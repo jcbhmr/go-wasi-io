@@ -4,7 +4,7 @@
 package stderr
 
 import (
-	"github.com/jcbhmr/go-wasi-io/v0.2/streams"
+	"github.com/jcbhmr/go-wasi-io/v0.2.0/streams"
 	"go.bytecodealliance.org/cm"
 )
 

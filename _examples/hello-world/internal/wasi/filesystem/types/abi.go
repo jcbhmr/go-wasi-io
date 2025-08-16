@@ -3,10 +3,9 @@
 package types
 
 import (
-	"unsafe"
-
-	wallclock "github.com/jcbhmr/go-wasi-io/v0.2/_examples/hello-world/internal/wasi/clocks/wall-clock"
+	wallclock "github.com/jcbhmr/go-wasi-io/v0.2.0/_examples/hello-world/internal/wasi/clocks/wall-clock"
 	"go.bytecodealliance.org/cm"
+	"unsafe"
 )
 
 // MetadataHashValueShape is used for storage in variant or result types.

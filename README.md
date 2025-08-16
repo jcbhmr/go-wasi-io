@@ -69,7 +69,7 @@ go get github.com/jcbhmr/go-wasi-io/v0.2.0
 ![Go](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=Go&logoColor=FFFFFF)
 ![WebAssembly](https://img.shields.io/badge/WebAssembly-654FF0?style=for-the-badge&logo=WebAssembly&logoColor=FFFFFF)
 
-To get started, use `wit-bindgen-go` like normal. [BytecodeAlliance's component model docs](https://component-model.bytecodealliance.org/) have [a nice guide to get started](https://component-model.bytecodealliance.org/language-support/go.html).
+To get started, use `wit-bindgen-go` like normal. [The Bytecode Alliance's component model docs](https://component-model.bytecodealliance.org/) have [a nice guide to get started](https://component-model.bytecodealliance.org/language-support/go.html).
 
 ```wit
 package octocat:hello;

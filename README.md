@@ -178,6 +178,7 @@ func main() {
 			return fmt.Errorf("failed to read file %q: %w", path2, err)
 		}
 		code = bytes.ReplaceAll(code, []byte("<package-root>/internal/wasi/io/"), []byte("github.com/jcbhmr/go-wasi-io/v0.2.0/"))
+		//                                    👆 Replace this with your Go module path
 		log.Printf("Writing %q", path2)
 		err = os.WriteFile(path2, code, 0644)
 		if err != nil {

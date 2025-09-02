@@ -12,8 +12,8 @@
 package streams
 
 import (
-	ioerror "github.com/jcbhmr/go-wasi-io/v0.2.0/error"
-	"github.com/jcbhmr/go-wasi-io/v0.2.0/poll"
+	ioerror "github.com/jcbhmr/go-wasi-io/error"
+	"github.com/jcbhmr/go-wasi-io/poll"
 	"go.bytecodealliance.org/cm"
 )
 

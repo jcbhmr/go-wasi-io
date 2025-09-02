@@ -19,20 +19,19 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
-        go-version: '1.24'
+        go-version: '1.25'
         
     - run: |
         cd "$(mktemp -d)"
-        wget https://github.com/tinygo-org/tinygo/releases/download/v0.38.0/tinygo_0.38.0_amd64.deb
-        sudo dpkg -i tinygo_0.38.0_amd64.deb
+        wget https://github.com/tinygo-org/tinygo/releases/download/v0.39.0/tinygo_0.39.0_amd64.deb
+        sudo dpkg -i tinygo_0.39.0_amd64.deb
     - uses: cargo-bins/cargo-binstall@main
     - run: cargo binstall -y wasm-tools
     - run: cargo install --locked wkg
-    - run: npm install --global @bytecodealliance/jco
+    - uses: jcbhmr/setup-wasmtime@v2
 
-    # - name: Build
-    #   run: go build -v ./...
+    - name: Build
+      run: go build -v ./...
 
     - name: Test
-      # run: go test -v ./...
-      run: go test -v ./_examples/hello-world
+      run: go test -v ./...

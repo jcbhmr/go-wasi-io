@@ -48,8 +48,8 @@ go get github.com/jcbhmr/go-wasi-io@v0.2.0
 
 ```go
 //go:generate go tool wit-bindgen-go generate --out ./internal/ ./wit/
-//go:generate rm -rf ./internal/wasi/random/
-//go:generate go tool jet -g "*.go" "<your-package-root>/internal/wasi/random/" "github.com/jcbhmr/go-wasi-random/" ./internal/
+//go:generate rm -rf ./internal/wasi/io/
+//go:generate go tool jet -g "*.go" "<your-package-root>/internal/wasi/io/" "github.com/jcbhmr/go-wasi-io/" ./internal/
 ```
 
 ```json

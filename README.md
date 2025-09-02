@@ -1,6 +1,6 @@
 # `wasi:io` bindings for Go
 
-📂 Centralized bindings to `wasi:io` interfaces
+📂 Centralized bindings to [`wasi:io`](https://github.com/WebAssembly/wasi-io) interfaces
 
 <table align=center>
 <td>

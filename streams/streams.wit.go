@@ -2,7 +2,7 @@
 
 //go:build wasip2
 
-// Package streams represents the imported interface "wasi:io/streams@0.2.6".
+// Package streams represents the imported interface "wasi:io/streams@0.2.7".
 //
 // WASI I/O is an I/O abstraction API which is currently focused on providing
 // stream types.
@@ -17,17 +17,17 @@ import (
 	"go.bytecodealliance.org/cm"
 )
 
-// Error represents the imported type alias "wasi:io/streams@0.2.6#error".
+// Error represents the imported type alias "wasi:io/streams@0.2.7#error".
 //
 // See [ioerror.Error] for more information.
 type Error = ioerror.Error
 
-// Pollable represents the imported type alias "wasi:io/streams@0.2.6#pollable".
+// Pollable represents the imported type alias "wasi:io/streams@0.2.7#pollable".
 //
 // See [poll.Pollable] for more information.
 type Pollable = poll.Pollable
 
-// StreamError represents the imported variant "wasi:io/streams@0.2.6#stream-error".
+// StreamError represents the imported variant "wasi:io/streams@0.2.7#stream-error".
 //
 // An error for input-stream and output-stream operations.
 //
@@ -79,7 +79,7 @@ func (v StreamError) String() string {
 	return _StreamErrorStrings[v.Tag()]
 }
 
-// InputStream represents the imported resource "wasi:io/streams@0.2.6#input-stream".
+// InputStream represents the imported resource "wasi:io/streams@0.2.7#input-stream".
 //
 // An input bytestream.
 //
@@ -209,7 +209,7 @@ func (self InputStream) Subscribe() (result Pollable) {
 	return
 }
 
-// OutputStream represents the imported resource "wasi:io/streams@0.2.6#output-stream".
+// OutputStream represents the imported resource "wasi:io/streams@0.2.7#output-stream".
 //
 // An output bytestream.
 //
@@ -276,25 +276,13 @@ func (self OutputStream) BlockingSplice(src InputStream, len_ uint64) (result cm
 // Perform a write of up to 4096 bytes, and then flush the stream. Block
 // until all of these operations are complete, or an error occurs.
 //
-// This is a convenience wrapper around the use of `check-write`,
-// `subscribe`, `write`, and `flush`, and is implemented with the
-// following pseudo-code:
-//
-//	let pollable = this.subscribe();
-//	while !contents.is_empty() {
-//	    // Wait for the stream to become writable
-//	    pollable.block();
-//	    let Ok(n) = this.check-write(); // eliding error handling
-//	    let len = min(n, contents.len());
-//	    let (chunk, rest) = contents.split_at(len);
-//	    this.write(chunk  );            // eliding error handling
-//	    contents = rest;
-//	}
-//	this.flush();
-//	// Wait for completion of `flush`
-//	pollable.block();
-//	// Check for any errors that arose during `flush`
-//	let _ = this.check-write();         // eliding error handling
+// Returns success when all of the contents written are successfully
+// flushed to output. If an error occurs at any point before all
+// contents are successfully flushed, that error is returned as soon as
+// possible. If writing and flushing the complete contents causes the
+// stream to become closed, this call should return success, and
+// subsequent calls to check-write or other interfaces should return
+// stream-error::closed.
 //
 //	blocking-write-and-flush: func(contents: list<u8>) -> result<_, stream-error>
 //
@@ -312,24 +300,8 @@ func (self OutputStream) BlockingWriteAndFlush(contents cm.List[uint8]) (result 
 // Block until all of these operations are complete, or an error
 // occurs.
 //
-// This is a convenience wrapper around the use of `check-write`,
-// `subscribe`, `write-zeroes`, and `flush`, and is implemented with
-// the following pseudo-code:
-//
-//	let pollable = this.subscribe();
-//	while num_zeroes != 0 {
-//	    // Wait for the stream to become writable
-//	    pollable.block();
-//	    let Ok(n) = this.check-write(); // eliding error handling
-//	    let len = min(n, num_zeroes);
-//	    this.write-zeroes(len);         // eliding error handling
-//	    num_zeroes -= len;
-//	}
-//	this.flush();
-//	// Wait for completion of `flush`
-//	pollable.block();
-//	// Check for any errors that arose during `flush`
-//	let _ = this.check-write();         // eliding error handling
+// Functionality is equivelant to `blocking-write-and-flush` with
+// contents given as a list of len containing only zeroes.
 //
 //	blocking-write-zeroes-and-flush: func(len: u64) -> result<_, stream-error>
 //

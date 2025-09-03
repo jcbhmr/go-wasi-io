@@ -2,7 +2,7 @@
 
 //go:build wasip2
 
-// Package poll represents the imported interface "wasi:io/poll@0.2.1".
+// Package poll represents the imported interface "wasi:io/poll@0.2.2".
 //
 // A poll API intended to let users wait for I/O events on multiple handles
 // at once.
@@ -12,7 +12,7 @@ import (
 	"go.bytecodealliance.org/cm"
 )
 
-// Pollable represents the imported resource "wasi:io/poll@0.2.1#pollable".
+// Pollable represents the imported resource "wasi:io/poll@0.2.2#pollable".
 //
 // `pollable` represents a single I/O event which may be ready, or not.
 //

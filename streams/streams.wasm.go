@@ -8,72 +8,72 @@ import (
 	"go.bytecodealliance.org/cm"
 )
 
-// This file contains wasmimport and wasmexport declarations for "wasi:io@0.2.1".
+// This file contains wasmimport and wasmexport declarations for "wasi:io@0.2.2".
 
-//go:wasmimport wasi:io/streams@0.2.1 [resource-drop]input-stream
+//go:wasmimport wasi:io/streams@0.2.2 [resource-drop]input-stream
 //go:noescape
 func wasmimport_InputStreamResourceDrop(self0 uint32)
 
-//go:wasmimport wasi:io/streams@0.2.1 [method]input-stream.blocking-read
+//go:wasmimport wasi:io/streams@0.2.2 [method]input-stream.blocking-read
 //go:noescape
 func wasmimport_InputStreamBlockingRead(self0 uint32, len0 uint64, result *cm.Result[cm.List[uint8], cm.List[uint8], StreamError])
 
-//go:wasmimport wasi:io/streams@0.2.1 [method]input-stream.blocking-skip
+//go:wasmimport wasi:io/streams@0.2.2 [method]input-stream.blocking-skip
 //go:noescape
 func wasmimport_InputStreamBlockingSkip(self0 uint32, len0 uint64, result *cm.Result[uint64, uint64, StreamError])
 
-//go:wasmimport wasi:io/streams@0.2.1 [method]input-stream.read
+//go:wasmimport wasi:io/streams@0.2.2 [method]input-stream.read
 //go:noescape
 func wasmimport_InputStreamRead(self0 uint32, len0 uint64, result *cm.Result[cm.List[uint8], cm.List[uint8], StreamError])
 
-//go:wasmimport wasi:io/streams@0.2.1 [method]input-stream.skip
+//go:wasmimport wasi:io/streams@0.2.2 [method]input-stream.skip
 //go:noescape
 func wasmimport_InputStreamSkip(self0 uint32, len0 uint64, result *cm.Result[uint64, uint64, StreamError])
 
-//go:wasmimport wasi:io/streams@0.2.1 [method]input-stream.subscribe
+//go:wasmimport wasi:io/streams@0.2.2 [method]input-stream.subscribe
 //go:noescape
 func wasmimport_InputStreamSubscribe(self0 uint32) (result0 uint32)
 
-//go:wasmimport wasi:io/streams@0.2.1 [resource-drop]output-stream
+//go:wasmimport wasi:io/streams@0.2.2 [resource-drop]output-stream
 //go:noescape
 func wasmimport_OutputStreamResourceDrop(self0 uint32)
 
-//go:wasmimport wasi:io/streams@0.2.1 [method]output-stream.blocking-flush
+//go:wasmimport wasi:io/streams@0.2.2 [method]output-stream.blocking-flush
 //go:noescape
 func wasmimport_OutputStreamBlockingFlush(self0 uint32, result *cm.Result[StreamError, struct{}, StreamError])
 
-//go:wasmimport wasi:io/streams@0.2.1 [method]output-stream.blocking-splice
+//go:wasmimport wasi:io/streams@0.2.2 [method]output-stream.blocking-splice
 //go:noescape
 func wasmimport_OutputStreamBlockingSplice(self0 uint32, src0 uint32, len0 uint64, result *cm.Result[uint64, uint64, StreamError])
 
-//go:wasmimport wasi:io/streams@0.2.1 [method]output-stream.blocking-write-and-flush
+//go:wasmimport wasi:io/streams@0.2.2 [method]output-stream.blocking-write-and-flush
 //go:noescape
 func wasmimport_OutputStreamBlockingWriteAndFlush(self0 uint32, contents0 *uint8, contents1 uint32, result *cm.Result[StreamError, struct{}, StreamError])
 
-//go:wasmimport wasi:io/streams@0.2.1 [method]output-stream.blocking-write-zeroes-and-flush
+//go:wasmimport wasi:io/streams@0.2.2 [method]output-stream.blocking-write-zeroes-and-flush
 //go:noescape
 func wasmimport_OutputStreamBlockingWriteZeroesAndFlush(self0 uint32, len0 uint64, result *cm.Result[StreamError, struct{}, StreamError])
 
-//go:wasmimport wasi:io/streams@0.2.1 [method]output-stream.check-write
+//go:wasmimport wasi:io/streams@0.2.2 [method]output-stream.check-write
 //go:noescape
 func wasmimport_OutputStreamCheckWrite(self0 uint32, result *cm.Result[uint64, uint64, StreamError])
 
-//go:wasmimport wasi:io/streams@0.2.1 [method]output-stream.flush
+//go:wasmimport wasi:io/streams@0.2.2 [method]output-stream.flush
 //go:noescape
 func wasmimport_OutputStreamFlush(self0 uint32, result *cm.Result[StreamError, struct{}, StreamError])
 
-//go:wasmimport wasi:io/streams@0.2.1 [method]output-stream.splice
+//go:wasmimport wasi:io/streams@0.2.2 [method]output-stream.splice
 //go:noescape
 func wasmimport_OutputStreamSplice(self0 uint32, src0 uint32, len0 uint64, result *cm.Result[uint64, uint64, StreamError])
 
-//go:wasmimport wasi:io/streams@0.2.1 [method]output-stream.subscribe
+//go:wasmimport wasi:io/streams@0.2.2 [method]output-stream.subscribe
 //go:noescape
 func wasmimport_OutputStreamSubscribe(self0 uint32) (result0 uint32)
 
-//go:wasmimport wasi:io/streams@0.2.1 [method]output-stream.write
+//go:wasmimport wasi:io/streams@0.2.2 [method]output-stream.write
 //go:noescape
 func wasmimport_OutputStreamWrite(self0 uint32, contents0 *uint8, contents1 uint32, result *cm.Result[StreamError, struct{}, StreamError])
 
-//go:wasmimport wasi:io/streams@0.2.1 [method]output-stream.write-zeroes
+//go:wasmimport wasi:io/streams@0.2.2 [method]output-stream.write-zeroes
 //go:noescape
 func wasmimport_OutputStreamWriteZeroes(self0 uint32, len0 uint64, result *cm.Result[StreamError, struct{}, StreamError])

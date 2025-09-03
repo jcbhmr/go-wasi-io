@@ -2,7 +2,7 @@
 
 //go:build wasip2
 
-// Package streams represents the imported interface "wasi:io/streams@0.2.1".
+// Package streams represents the imported interface "wasi:io/streams@0.2.2".
 //
 // WASI I/O is an I/O abstraction API which is currently focused on providing
 // stream types.
@@ -17,17 +17,17 @@ import (
 	"go.bytecodealliance.org/cm"
 )
 
-// Error represents the imported type alias "wasi:io/streams@0.2.1#error".
+// Error represents the imported type alias "wasi:io/streams@0.2.2#error".
 //
 // See [ioerror.Error] for more information.
 type Error = ioerror.Error
 
-// Pollable represents the imported type alias "wasi:io/streams@0.2.1#pollable".
+// Pollable represents the imported type alias "wasi:io/streams@0.2.2#pollable".
 //
 // See [poll.Pollable] for more information.
 type Pollable = poll.Pollable
 
-// StreamError represents the imported variant "wasi:io/streams@0.2.1#stream-error".
+// StreamError represents the imported variant "wasi:io/streams@0.2.2#stream-error".
 //
 // An error for input-stream and output-stream operations.
 //
@@ -42,6 +42,9 @@ type StreamError cm.Variant[uint8, Error, Error]
 // The last operation (a write or flush) failed before completion.
 //
 // More information is available in the `error` payload.
+//
+// After this, the stream will be closed. All future operations return
+// `stream-error::closed`.
 func StreamErrorLastOperationFailed(data Error) StreamError {
 	return cm.New[StreamError](0, data)
 }
@@ -76,7 +79,7 @@ func (v StreamError) String() string {
 	return _StreamErrorStrings[v.Tag()]
 }
 
-// InputStream represents the imported resource "wasi:io/streams@0.2.1#input-stream".
+// InputStream represents the imported resource "wasi:io/streams@0.2.2#input-stream".
 //
 // An input bytestream.
 //
@@ -206,7 +209,7 @@ func (self InputStream) Subscribe() (result Pollable) {
 	return
 }
 
-// OutputStream represents the imported resource "wasi:io/streams@0.2.1#output-stream".
+// OutputStream represents the imported resource "wasi:io/streams@0.2.2#output-stream".
 //
 // An output bytestream.
 //

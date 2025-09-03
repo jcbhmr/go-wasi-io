@@ -2,7 +2,7 @@
 
 //go:build wasip2
 
-// Package streams represents the imported interface "wasi:io/streams@0.2.0".
+// Package streams represents the imported interface "wasi:io/streams@0.2.1".
 //
 // WASI I/O is an I/O abstraction API which is currently focused on providing
 // stream types.
@@ -17,17 +17,17 @@ import (
 	"go.bytecodealliance.org/cm"
 )
 
-// Error represents the imported type alias "wasi:io/streams@0.2.0#error".
+// Error represents the imported type alias "wasi:io/streams@0.2.1#error".
 //
 // See [ioerror.Error] for more information.
 type Error = ioerror.Error
 
-// Pollable represents the imported type alias "wasi:io/streams@0.2.0#pollable".
+// Pollable represents the imported type alias "wasi:io/streams@0.2.1#pollable".
 //
 // See [poll.Pollable] for more information.
 type Pollable = poll.Pollable
 
-// StreamError represents the imported variant "wasi:io/streams@0.2.0#stream-error".
+// StreamError represents the imported variant "wasi:io/streams@0.2.1#stream-error".
 //
 // An error for input-stream and output-stream operations.
 //
@@ -76,7 +76,7 @@ func (v StreamError) String() string {
 	return _StreamErrorStrings[v.Tag()]
 }
 
-// InputStream represents the imported resource "wasi:io/streams@0.2.0#input-stream".
+// InputStream represents the imported resource "wasi:io/streams@0.2.1#input-stream".
 //
 // An input bytestream.
 //
@@ -206,7 +206,7 @@ func (self InputStream) Subscribe() (result Pollable) {
 	return
 }
 
-// OutputStream represents the imported resource "wasi:io/streams@0.2.0#output-stream".
+// OutputStream represents the imported resource "wasi:io/streams@0.2.1#output-stream".
 //
 // An output bytestream.
 //
@@ -216,6 +216,10 @@ func (self InputStream) Subscribe() (result Pollable) {
 // promptly, which could even be zero. To wait for the stream to be ready to
 // accept data, the `subscribe` function to obtain a `pollable` which can be
 // polled for using `wasi:io/poll`.
+//
+// Dropping an `output-stream` while there's still an active write in
+// progress may result in the data being lost. Before dropping the stream,
+// be sure to fully flush your writes.
 //
 //	resource output-stream
 type OutputStream cm.Resource
@@ -381,7 +385,7 @@ func (self OutputStream) Flush() (result cm.Result[StreamError, struct{}, Stream
 //
 // Read from one stream and write to another.
 //
-// The behavior of splice is equivelant to:
+// The behavior of splice is equivalent to:
 // 1. calling `check-write` on the `output-stream`
 // 2. calling `read` on the `input-stream` with the smaller of the
 // `check-write` permitted length and the `len` provided to `splice`
@@ -407,7 +411,7 @@ func (self OutputStream) Splice(src InputStream, len_ uint64) (result cm.Result[
 // Subscribe represents the imported method "subscribe".
 //
 // Create a `pollable` which will resolve once the output-stream
-// is ready for more writing, or an error has occured. When this
+// is ready for more writing, or an error has occurred. When this
 // pollable is ready, `check-write` will return `ok(n)` with n>0, or an
 // error.
 //

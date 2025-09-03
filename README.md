@@ -38,6 +38,12 @@
 ![Go](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=Go&logoColor=FFFFFF)
 
 ```sh
+go get github.com/jcbhmr/go-wasi-io
+```
+
+⚠️ The latest version is v0.2.7. You probably want v0.2.0. Use @v0.2.0 to select it.
+
+```sh
 go get github.com/jcbhmr/go-wasi-io@v0.2.0
 ```
 

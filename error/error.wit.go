@@ -2,14 +2,14 @@
 
 //go:build wasip2
 
-// Package ioerror represents the imported interface "wasi:io/error@0.2.0".
+// Package ioerror represents the imported interface "wasi:io/error@0.2.1".
 package ioerror
 
 import (
 	"go.bytecodealliance.org/cm"
 )
 
-// Error represents the imported resource "wasi:io/error@0.2.0#error".
+// Error represents the imported resource "wasi:io/error@0.2.1#error".
 //
 // A resource which represents some error information.
 //
@@ -20,13 +20,11 @@ import (
 // `wasi:io/streams/stream-error` type.
 //
 // To provide more specific error information, other interfaces may
-// provide functions to further "downcast" this error into more specific
-// error information. For example, `error`s returned in streams derived
-// from filesystem types to be described using the filesystem's own
-// error-code type, using the function
-// `wasi:filesystem/types/filesystem-error-code`, which takes a parameter
-// `borrow<error>` and returns
-// `option<wasi:filesystem/types/error-code>`.
+// offer functions to "downcast" this error into more specific types. For example,
+// errors returned from streams derived from filesystem types can be described using
+// the filesystem's own error-code type. This is done using the function
+// `wasi:filesystem/types/filesystem-error-code`, which takes a `borrow<error>`
+// parameter and returns an `option<wasi:filesystem/types/error-code>`.
 //
 // The set of functions which can "downcast" an `error` into a more
 // concrete type is open.

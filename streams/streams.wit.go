@@ -2,7 +2,7 @@
 
 //go:build wasip2
 
-// Package streams represents the imported interface "wasi:io/streams@0.2.3".
+// Package streams represents the imported interface "wasi:io/streams@0.2.4".
 //
 // WASI I/O is an I/O abstraction API which is currently focused on providing
 // stream types.
@@ -17,17 +17,17 @@ import (
 	"go.bytecodealliance.org/cm"
 )
 
-// Error represents the imported type alias "wasi:io/streams@0.2.3#error".
+// Error represents the imported type alias "wasi:io/streams@0.2.4#error".
 //
 // See [ioerror.Error] for more information.
 type Error = ioerror.Error
 
-// Pollable represents the imported type alias "wasi:io/streams@0.2.3#pollable".
+// Pollable represents the imported type alias "wasi:io/streams@0.2.4#pollable".
 //
 // See [poll.Pollable] for more information.
 type Pollable = poll.Pollable
 
-// StreamError represents the imported variant "wasi:io/streams@0.2.3#stream-error".
+// StreamError represents the imported variant "wasi:io/streams@0.2.4#stream-error".
 //
 // An error for input-stream and output-stream operations.
 //
@@ -79,7 +79,7 @@ func (v StreamError) String() string {
 	return _StreamErrorStrings[v.Tag()]
 }
 
-// InputStream represents the imported resource "wasi:io/streams@0.2.3#input-stream".
+// InputStream represents the imported resource "wasi:io/streams@0.2.4#input-stream".
 //
 // An input bytestream.
 //
@@ -209,7 +209,7 @@ func (self InputStream) Subscribe() (result Pollable) {
 	return
 }
 
-// OutputStream represents the imported resource "wasi:io/streams@0.2.3#output-stream".
+// OutputStream represents the imported resource "wasi:io/streams@0.2.4#output-stream".
 //
 // An output bytestream.
 //
@@ -282,13 +282,13 @@ func (self OutputStream) BlockingSplice(src InputStream, len_ uint64) (result cm
 //
 //	let pollable = this.subscribe();
 //	while !contents.is_empty() {
-//	// Wait for the stream to become writable
-//	pollable.block();
-//	let Ok(n) = this.check-write(); // eliding error handling
-//	let len = min(n, contents.len());
-//	let (chunk, rest) = contents.split_at(len);
-//	this.write(chunk  );            // eliding error handling
-//	contents = rest;
+//	    // Wait for the stream to become writable
+//	    pollable.block();
+//	    let Ok(n) = this.check-write(); // eliding error handling
+//	    let len = min(n, contents.len());
+//	    let (chunk, rest) = contents.split_at(len);
+//	    this.write(chunk  );            // eliding error handling
+//	    contents = rest;
 //	}
 //	this.flush();
 //	// Wait for completion of `flush`
@@ -318,12 +318,12 @@ func (self OutputStream) BlockingWriteAndFlush(contents cm.List[uint8]) (result 
 //
 //	let pollable = this.subscribe();
 //	while num_zeroes != 0 {
-//	// Wait for the stream to become writable
-//	pollable.block();
-//	let Ok(n) = this.check-write(); // eliding error handling
-//	let len = min(n, num_zeroes);
-//	this.write-zeroes(len);         // eliding error handling
-//	num_zeroes -= len;
+//	    // Wait for the stream to become writable
+//	    pollable.block();
+//	    let Ok(n) = this.check-write(); // eliding error handling
+//	    let len = min(n, num_zeroes);
+//	    this.write-zeroes(len);         // eliding error handling
+//	    num_zeroes -= len;
 //	}
 //	this.flush();
 //	// Wait for completion of `flush`

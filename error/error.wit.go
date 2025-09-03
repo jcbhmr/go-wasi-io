@@ -2,14 +2,14 @@
 
 //go:build wasip2
 
-// Package ioerror represents the imported interface "wasi:io/error@0.2.3".
+// Package ioerror represents the imported interface "wasi:io/error@0.2.4".
 package ioerror
 
 import (
 	"go.bytecodealliance.org/cm"
 )
 
-// Error represents the imported resource "wasi:io/error@0.2.3#error".
+// Error represents the imported resource "wasi:io/error@0.2.4#error".
 //
 // A resource which represents some error information.
 //

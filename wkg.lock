@@ -7,6 +7,6 @@ name = "wasi:io"
 registry = "wasi.dev"
 
 [[packages.versions]]
-requirement = "=0.2.3"
-version = "0.2.3"
-digest = "sha256:06b1e3bfc7548e3c0c06a78b4c1f98a3fa81b8b231ea3d4e7602fe221e2f3cc5"
+requirement = "=0.2.4"
+version = "0.2.4"
+digest = "sha256:af392a6f3e1bf304bb059c90093d614f1937d6dfe8e70e6b6e853153eb99f78f"

@@ -1,5 +1,5 @@
-package jcbhmr:go-wasi-io@0.2.2;
+package jcbhmr:go-wasi-io@0.2.3;
 
 world go-wasi-io {
-    include wasi:io/imports@0.2.2;
+    include wasi:io/imports@0.2.3;
 }

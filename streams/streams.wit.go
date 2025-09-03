@@ -2,7 +2,7 @@
 
 //go:build wasip2
 
-// Package streams represents the imported interface "wasi:io/streams@0.2.4".
+// Package streams represents the imported interface "wasi:io/streams@0.2.5".
 //
 // WASI I/O is an I/O abstraction API which is currently focused on providing
 // stream types.
@@ -17,17 +17,17 @@ import (
 	"go.bytecodealliance.org/cm"
 )
 
-// Error represents the imported type alias "wasi:io/streams@0.2.4#error".
+// Error represents the imported type alias "wasi:io/streams@0.2.5#error".
 //
 // See [ioerror.Error] for more information.
 type Error = ioerror.Error
 
-// Pollable represents the imported type alias "wasi:io/streams@0.2.4#pollable".
+// Pollable represents the imported type alias "wasi:io/streams@0.2.5#pollable".
 //
 // See [poll.Pollable] for more information.
 type Pollable = poll.Pollable
 
-// StreamError represents the imported variant "wasi:io/streams@0.2.4#stream-error".
+// StreamError represents the imported variant "wasi:io/streams@0.2.5#stream-error".
 //
 // An error for input-stream and output-stream operations.
 //
@@ -79,7 +79,7 @@ func (v StreamError) String() string {
 	return _StreamErrorStrings[v.Tag()]
 }
 
-// InputStream represents the imported resource "wasi:io/streams@0.2.4#input-stream".
+// InputStream represents the imported resource "wasi:io/streams@0.2.5#input-stream".
 //
 // An input bytestream.
 //
@@ -209,7 +209,7 @@ func (self InputStream) Subscribe() (result Pollable) {
 	return
 }
 
-// OutputStream represents the imported resource "wasi:io/streams@0.2.4#output-stream".
+// OutputStream represents the imported resource "wasi:io/streams@0.2.5#output-stream".
 //
 // An output bytestream.
 //
